@@ -50,8 +50,13 @@ function writeToFile(fileName, data) {
   });
 }
 
-// TODO: Create a function to initialize app
-function init() {}
+// Defining write file function using User Inputed Answers
+function init() {
+    inquirer.prompt(questions).then((answers) => {
+        const data = Object.values(answers);
+        writeToFile('README.md', data);
+    });
+}
 
-// Function call to initialize app
+// Call Initialization Function
 init();
