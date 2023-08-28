@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const {renderLicenseBadge, renderLicenseLink, renderLicenseSection} = require('./utils/generateMarkdown')
 
 const questions = ["Please input Project title.", "Please give a Description of the Project.",
 "Please provide Installation Instructions.", "Please Provide Usage Information.", 
@@ -37,8 +38,8 @@ function writeToFile(fileName, data) {
   ## Questions
   If you have any questions, feel free to reach out via email or GitHub.
 
-  Email: your-email@example.com
-  GitHub: [Your GitHub Profile](https://github.com/your-github-username)
+  Email: brochbaltzer@gmail.com
+  GitHub: [Your GitHub Profile](https://github.com/brochb)
   `;
 
   fs.writeFile(fileName, readmeContent, (err) => {
