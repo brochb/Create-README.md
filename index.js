@@ -2,14 +2,33 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const { renderLicenseBadge, renderLicenseLink, renderLicenseSection } = require('./utils/generateMarkdown');
 
-const questions = [
-    "Please input Project title.",
-    "Please give a Description of the Project.",
-    "Please provide Installation Instructions.",
-    "Please Provide Usage Information.",
-    "Please provide Contribution Guidelines",
-    "Please provide Test Instructions."
-];
+const questions = [{
+    type: 'input',
+    message: 'Please input Project title.',
+    name: 'title',
+}, {
+    type: 'input',
+    message: 'Please give a Description of the Project.',
+    name: 'desciption',
+}, {
+    type: 'input',
+    message: 'Please provide Installation Instructions.',
+    name: 'installation',
+}, {
+    type: 'input',
+    message: 'Please Provide Usage Information.',
+    name: 'usage',
+}, {
+    type: 'input',
+    message: 'Please provide Contribution Guidelines',
+    name: 'contribution',
+}, {
+    type: 'input',
+    message: 'Please provide Test Instructions.',
+    name: 'test'
+}];
+
+inquirer.prompt(questions).then((answers) => {});
 
 // Function to write README file
 function writeFile(fileName, data) {
