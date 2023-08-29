@@ -1,16 +1,21 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const {renderLicenseBadge, renderLicenseLink, renderLicenseSection} = require('./utils/generateMarkdown')
+const { renderLicenseBadge, renderLicenseLink, renderLicenseSection } = require('./utils/generateMarkdown');
 
-const questions = ["Please input Project title.", "Please give a Description of the Project.",
-"Please provide Installation Instructions.", "Please Provide Usage Information.", 
-"Please provide Constribution Guidelines", "Please provide Test Instructions."];
+const questions = [
+    "Please input Project title.",
+    "Please give a Description of the Project.",
+    "Please provide Installation Instructions.",
+    "Please Provide Usage Information.",
+    "Please provide Contribution Guidelines",
+    "Please provide Test Instructions."
+];
 
 // Function to write README file
-function writeToFile(fileName, data) {
-  const [title, description, installation, usage, contribution, tests] = data;
+function writeFile(fileName, data) {
+    const [title, description, installation, usage, contribution, tests] = data;
 
-  const readmeContent = `
+    const readmeContent = `
   # ${title}
 
   ## Description
@@ -42,20 +47,20 @@ function writeToFile(fileName, data) {
   GitHub: [Your GitHub Profile](https://github.com/brochb)
   `;
 
-  fs.writeFile(fileName, readmeContent, (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(`README file (${fileName}) created successfully!`);
-    }
-  });
+    fs.writeFile(fileName, readmeContent, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(`README file (${fileName}) created successfully!`);
+        }
+    });
 }
 
-// Defining write file function using User Inputed Answers
+// Defining initialization function
 function init() {
     inquirer.prompt(questions).then((answers) => {
         const data = Object.values(answers);
-        writeToFile('README.md', data);
+        writeFile('README.md', data);
     });
 }
 
