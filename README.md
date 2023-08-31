@@ -18,6 +18,7 @@
 
   ## Usage
   Make sure node is up to date using ```npm i```. From there you can run ```node index.js``` to run the program seen in the video.
+  The Video can be found here: https://drive.google.com/file/d/13ggyl1OtShVJbQ84u_MD2-rO2H8vzMOy/view
 
   ## Contributing
   Please make your own branch, and await merge to main with any changes.
