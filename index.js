@@ -1,6 +1,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+
 const { renderLicenseBadge, renderLicenseLink, renderLicenseSection } = require('./utils/generateMarkdown');
+
+const licenseOptions = ['MIT License',
+    'Apache License 2.0',
+    'GNU General Public License (GPL) 3.0',
+    'BSD 3-Clause "New" or "Revised" License'
+];
 
 const questions = [{
     type: 'input',
@@ -25,12 +32,27 @@ const questions = [{
 }, {
     type: 'input',
     message: 'Please provide Test Instructions.',
-    name: 'test'
+    name: 'tests'
+}, {
+    type: 'input',
+    message: 'Please provide your GitHub Username.',
+    name: 'githubuser'
+}, {
+    type: 'input',
+    message: 'Please enter your E-mail address.',
+    name: 'email'
+}, {
+    type: 'list',
+    message: 'Please select a license:',
+    name: 'license',
+    choices: licenseOptions,
 }];
 
+
+
 // Function to write README file
-function writeFile(fileName, data) {
-    const [title, description, installation, usage, contribution, tests] = data;
+function writeFile(fileName, data, license) {
+    const [title, description, installation, usage, contribution, tests, githubuser, email] = data;
 
     const readmeContent = `
   # ${title}
@@ -44,6 +66,8 @@ function writeFile(fileName, data) {
   - [Contributing](#contributing)
   - [Tests](#tests)
   - [Questions](#questions)
+  - [Licese](#license)
+  - [Contact](#contact)
 
   ## Installation
   ${installation}
@@ -60,8 +84,12 @@ function writeFile(fileName, data) {
   ## Questions
   If you have any questions, feel free to reach out via email or GitHub.
 
-  Email: brochbaltzer@gmail.com
-  GitHub: [Your GitHub Profile](https://github.com/brochb)
+  ## License
+  This Project is licenced under the ${license} License.
+
+  ## Contact
+  Email: ${email}
+  GitHub: https://github.com/${githubuser}
   `;
 
     fs.writeFile(fileName, readmeContent, (err) => {
@@ -76,20 +104,11 @@ function writeFile(fileName, data) {
 // Defining initialization function
 function init() {
     inquirer.prompt(questions).then((answers) => {
+        const selectedLicense = answers.license;
         const data = Object.values(answers);
-        writeFile('README.md', data);
+        writeFile('README.md', data, selectedLicense);
     });
 }
 
 // Call Initialization Function
 init();
-
-
-// WHEN I choose a license for my application from a list of options
-// THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-// WHEN I enter my GitHub username
-// THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-// WHEN I enter my email address
-// THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-// WHEN I click on the links in the Table of Contents
-// THEN I am taken to the corresponding section of the README

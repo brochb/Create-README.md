@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli-select": "^1.1.2",
     "inquirer": "8.2.4"
   }
 }

@@ -33,6 +33,8 @@ function generateMarkdown(data) {
           # ${data.usage}
           # ${data.contribution}
           # ${data.tests}
+          # ${data.license}
+          # ${data.contact}
 `;
 }
 
