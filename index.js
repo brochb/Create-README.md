@@ -55,6 +55,13 @@ const questions = [{
 function writeFile(fileName, data, license) {
     const [title, description, installation, usage, contribution, tests, githubuser, email] = data;
 
+    let licenseContent = '';
+    if (license === 'none') {
+        licenseContent = 'none';
+    } else {
+        licenseContent = `This Project is licensed under ${license}.`;
+    }
+
     const readmeContent = `
   # ${title}
 
@@ -94,6 +101,9 @@ function writeFile(fileName, data, license) {
   `;
 
     fs.writeFile(fileName, readmeContent, (err) => {
+        if (license === 'none') {
+            const readmeContent = 
+        }
         if (err) {
             console.error(err);
         } else {
@@ -107,7 +117,7 @@ function init() {
     inquirer.prompt(questions).then((answers) => {
         const selectedLicense = answers.license;
         const data = Object.values(answers);
-        writeFile('README.md', data, selectedLicense);
+        writeFile('newREADME.md', data, selectedLicense);
     });
 }
 
