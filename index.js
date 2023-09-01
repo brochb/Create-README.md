@@ -101,9 +101,6 @@ function writeFile(fileName, data, license) {
   `;
 
     fs.writeFile(fileName, readmeContent, (err) => {
-        if (license === 'none') {
-            const readmeContent = 
-        }
         if (err) {
             console.error(err);
         } else {
