@@ -6,7 +6,8 @@ const { renderLicenseBadge, renderLicenseLink, renderLicenseSection } = require(
 const licenseOptions = ['MIT License',
     'Apache License 2.0',
     'GNU General Public License (GPL) 3.0',
-    'BSD 3-Clause "New" or "Revised" License'
+    'BSD 3-Clause "New" or "Revised" License',
+    'none'
 ];
 
 const questions = [{
@@ -85,7 +86,7 @@ function writeFile(fileName, data, license) {
   If you have any questions, feel free to reach out via email or GitHub.
 
   ## License
-  This Project is licenced under the ${license} License.
+  This Project is licenced under ${license}.
 
   ## Contact
   Email: ${email}
