@@ -10,7 +10,7 @@
   - [Contributing](#contributing)
   - [Tests](#tests)
   - [Questions](#questions)
-  - [Licese](#license)
+  - [License](#license)
   - [Contact](#contact)
 
   ## Installation
